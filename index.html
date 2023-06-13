@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>charts</title>
+    <style>
+        h1 {
+            text-decoration: underline;
+            text-align: center;
+        }
+
+        .graph-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pieGraph,
+        .polarGraph,
+        .RadarGraph {
+            width: 450px;
+            height: 450px;
+        }
+
+        .barGraph,
+        .lineGraph,
+        .areaGraph,
+        .ScatterGraph,
+        .MixedGraph {
+            width: 450px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>CHARTS</h1>
+    <div class="graph-container">
+        <h2>Bar Chart</h2>
+        <div class="barGraph">
+            <canvas id="barGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Pie Chart</h2>
+        <div class="pieGraph">
+            <canvas id="pieGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Line Chart</h2>
+        <div class="lineGraph">
+            <canvas id="lineGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Area Chart</h2>
+        <div class="areaGraph">
+            <canvas id="areaGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Polar Chart</h2>
+        <div class="polarGraph">
+            <canvas id="polarGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Radar Chart</h2>
+        <div class="RadarGraph">
+            <canvas id="RadarGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Scatter Chart</h2>
+        <div class="ScatterGraph">
+            <canvas id="ScatterGraph"></canvas>
+        </div>
+    </div>
+    <div class="graph-container">
+        <h2>Mixed Chart</h2>
+        <div class="MixedGraph">
+            <canvas id="MixedGraph"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        //Data for the bar Chart
+        const barData = {
+            labels: ['A', 'B', 'C', 'D', 'E', 'F'],
+            datasets: [{
+                label: 'Bar Dataset',
+                data: [10, 20, -13, 15, -5, 8],
+                backgroundColor: 'steelblue'
+            }]
+        };
+
+        //options for the bar Chart
+        const barOptions = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        //Data for the pie Chart
+        const pieData = {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            datasets: [{
+                label: 'Pie Dataset',
+                data: [10, 20, 15, 5, 8],
+                backgroundColor: ['steelblue', 'lightblue', 'blue', 'darkblue', 'skyblue']
+            }]
+        };
+
+        //options for the pie Chart
+        const pieOptions = {};
+
+        //the bar Chart
+        const barCtx = document.getElementById('barGraph').getContext('2d');
+        new Chart(barCtx, {
+            type: 'bar',
+            data: barData,
+            options: barOptions
+        });
+
+        //the pie Chart
+        const pieCtx = document.getElementById('pieGraph').getContext('2d');
+        new Chart(pieCtx, {
+            type: 'pie',
+            data: pieData,
+            options: pieOptions
+        });
+
+        //Data for the line Chart
+        const Linedata = {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            datasets: [{
+                label: 'Line Dataset',
+                data: [10, -20, 15, -5, 8],
+                borderColor: 'blue',
+                fill: false
+            }]
+        };
+
+        //options for the line Chart
+        const Lineoptions = {
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        };
+        const lineCtx = document.getElementById('lineGraph').getContext('2d');
+        new Chart(lineCtx, {
+            type: 'line',
+            data: Linedata,
+            options: Lineoptions
+        });
+
+        //Data for the area Chart
+        const Areadata = {
+            labels: ['A', 'B', 'C', 'D', 'E'],
+            datasets: [{
+                label: 'Area 1',
+                data: [10, 20, 15, 5, 8],
+                backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 2,
+                fill: 'origin',
+                tension: 0
+            }
+            ]
+        };
+
+        //options for the area Chart
+        const Areaoptions = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+
+        //the area Chart
+        const Areactx = document.getElementById('areaGraph').getContext('2d');
+        new Chart(Areactx, {
+            type: 'line',
+            data: Areadata,
+            options: Areaoptions
+        });
+
+        //Data for the Polar Chart
+        const Polardata = {
+            labels: ['yellow', 'red', 'grey', 'green', 'blue'],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [11, 16, 7, 3, 14],
+                backgroundColor: ['yellow', 'red', 'grey', 'green', 'blue']
+            }]
+        };
+        // the polar Chart
+        const polarctx = document.getElementById('polarGraph').getContext('2d');
+        new Chart(polarctx, {
+            type: 'polarArea',
+            data: Polardata,
+            options: {}
+        });
+
+        //Data for the Radar Chart
+        const Radardata = {
+            labels: ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'],
+            datasets: [{
+                label: ' Dataset-1',
+                data: [65, 59, 90, 81, 56, 55, 40],
+                fill: true,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgb(255, 99, 132)',
+            }, {
+                label: 'Dataset-2',
+                data: [28, 48, 40, 19, 96, 27, 100],
+                fill: true,
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgb(54, 162, 235)',
+            }]
+        };
+
+        //options for the Radar Chart
+        const Radaroptions = {
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            }
+        }
+
+        const Radarctx = document.getElementById('RadarGraph').getContext('2d');
+        new Chart(Radarctx, {
+            type: 'radar',
+            data: Radardata,
+            options: Radaroptions
+        });
+
+        // Scatter Chart
+        const Scatterdata = {
+            datasets: [{
+                label: 'Scatter Dataset',
+                data: [{
+                    x: -10,
+                    y: 0
+                }, {
+                    x: 0,
+                    y: 10
+                }, {
+                    x: 10,
+                    y: 5
+                }, {
+                }, {
+                    x: -4,
+                    y: 4
+                }, {
+                    x: 0.5,
+                    y: 5.5
+                }],
+                backgroundColor: 'rgb(255, 99, 132)'
+            }],
+        };
+
+        const Scatteroption = {
+            scales: {
+                x: {
+                    type: 'linear',
+                    position: 'bottom'
+                }
+            }
+        }
+        const Scatterctx = document.getElementById('ScatterGraph').getContext('2d');
+        new Chart(Scatterctx, {
+            type: 'scatter',
+            data: Scatterdata,
+            options: Scatteroption
+        });
+
+
+        // Scatter Chart
+        const Mixeddata = {
+            labels: ['January', 'February', 'March', 'April'],
+            datasets: [{
+                type: 'bar',
+                label: 'Bar Dataset',
+                data: [10, 20, 30, 40],
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)'
+            }, {
+                type: 'line',
+                label: 'Line Dataset',
+                data: [10, 20, 30, 40],
+                fill: false,
+                borderColor: 'rgb(54, 162, 235)'
+            }]
+        };
+
+        const Mixedctx = document.getElementById('MixedGraph').getContext('2d');
+        new Chart(Mixedctx, {
+            type: 'scatter',
+            data: Mixeddata,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
